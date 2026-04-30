@@ -1,4 +1,6 @@
 function adicionarTarefa() {
+    let corSucesso = "#28A745";
+    let corErro = "#A34743";
 
     //recebe valor do input do usuário
     const inputTarefa = document.getElementById("inputTarefa");
@@ -11,12 +13,12 @@ function adicionarTarefa() {
         //mostre uma mensagem de erro
         let mensagemErro = "Digite uma tarefa para adicioná-la a sua lista!";
         mensagem.textContent = mensagemErro;
-        mensagem.style.color = "#A34743";
+        mensagem.style.color = corErro;
     } else {
         //mensagem de tarefa adicionada com sucesso
         let mensagemSucesso = "Tarefa adicionada com sucesso!";
         mensagem.textContent = mensagemSucesso;
-        mensagem.style.color = "#28A745";
+        mensagem.style.color = corSucesso;
 
         //cria novo item (li) e insere na (lista ul)
         const listaTarefas = document.getElementById("listaTarefas");
