@@ -1,4 +1,9 @@
 let tarefas = [];
+let divPrincipal = document.getElementById("container");
+let botaoLimpar = document.createElement("button");
+
+botaoLimpar.className = "botao_lista";
+botaoLimpar.textContent = "Limpar lista";
 
 function adicionarTarefa() {
     const inputTarefa = document.getElementById("inputTarefa");
@@ -41,10 +46,16 @@ function renderizarTarefas() {
         botaoEditar.className = "editar";
         botaoEditar.textContent = "Editar";
         botaoEditar.onclick = () => editarTarefa(i);
+        if (tarefas.length > 0) {
+            botaoLimpar.removeAttribute('hidden');
+            botaoLimpar.onclick = () => limparLista();
+            divPrincipal.appendChild(botaoLimpar);
+        }
         novaTarefa.appendChild(botaoRemover);
         novaTarefa.appendChild(botaoEditar);
         listaTarefas.appendChild(novaTarefa);
     }
+
 }
 
 function removerTarefa(i) {
@@ -58,4 +69,14 @@ function editarTarefa(i) {
         tarefas[i] = tarefaEditada;
         renderizarTarefas();
     }
+}
+
+//<button onclick="limparLista()" class="botao_lista">Limpar</button>
+
+function limparLista() {
+    tarefas.length = 0;
+    renderizarTarefas();
+    const mensagem = document.getElementById("mensagem");
+    mensagem.textContent = "Lista zerada com sucesso!";
+    botaoLimpar.toggleAttribute('hidden');
 }
